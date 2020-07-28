@@ -29,15 +29,18 @@ class SubFlowerTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 7
+        return 5
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        
+        let flowers = ["1","2", "3", "4", "5"]
         let lbl: UILabel = UILabel(frame: CGRect(x: 250, y: 100, width: 200, height: 100))
+        lbl.text = flowers[indexPath.row]
         // Configure the cell...
+        
+        cell.addSubview(lbl)
 
         return cell
     }

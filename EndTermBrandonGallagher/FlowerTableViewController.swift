@@ -16,13 +16,14 @@ class FlowerTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.tableView.rowHeight = 200
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-//        imageView.layer.cornerRadius = 10
-//        imageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        let url = URL(string: "https://disease.sh/v3/covid-19/all")!
+        
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            print(String(data: data, encoding: .utf8)!)
+        }
+        
+        task.resume()
     }
 
     // MARK: - Table view data source
@@ -44,6 +45,9 @@ class FlowerTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         imageView.image = UIImage(named: "image")
+        
+        imageView.layer.cornerRadius = 10
+        imageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         let lbl: UILabel = UILabel(frame: CGRect(x: 250, y: 100, width: 200, height: 100))
         lbl.text = "Lotus"

@@ -46,11 +46,13 @@ class FlowerTableViewController: UITableViewController {
         let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         imageView.image = UIImage(named: "image")
         
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
-        let lbl: UILabel = UILabel(frame: CGRect(x: 250, y: 100, width: 200, height: 100))
-        lbl.text = "Lotus"
+        let lbl: UIButton = UIButton(frame: CGRect(x: 250, y: 100, width: 200, height: 100))
+        lbl.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        lbl.setTitle("Lotus", for: .normal)
         lbl.backgroundColor = UIColor.purple
         
         cell.contentView.addSubview(lbl)
@@ -58,6 +60,11 @@ class FlowerTableViewController: UITableViewController {
         // Configure the cell...
 
         return cell
+    }
+    
+    @objc func buttonClicked()
+    {
+        self.performSegue(withIdentifier: "goToSecond", sender: self)
     }
     
 

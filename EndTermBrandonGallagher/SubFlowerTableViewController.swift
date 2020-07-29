@@ -27,6 +27,10 @@ class SubFlowerTableViewController: UITableViewController {
         return 1
     }
 
+    @IBAction func goBackClick(_ sender: Any) {
+        self.performSegue(withIdentifier: "goBack", sender: self)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 5
@@ -34,9 +38,13 @@ class SubFlowerTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        let flowers = ["1","2", "3", "4", "5"]
-        let lbl: UILabel = UILabel(frame: CGRect(x: 250, y: 100, width: 200, height: 100))
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let flowers = ["1","2", "3", "4", "Alright we need some communism"]
+        let lbl: UILabel = UILabel(frame: CGRect(x: 10, y: 10, width: 400, height: 25))
+        lbl.backgroundColor = UIColor.purple
+        lbl.textColor = UIColor.black
+        lbl.textAlignment = NSTextAlignment.left
+        lbl.font = lbl.font.withSize(20)
         lbl.text = flowers[indexPath.row]
         // Configure the cell...
         
